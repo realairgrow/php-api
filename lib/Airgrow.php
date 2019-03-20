@@ -3,30 +3,37 @@
 namespace Airgrow;
 
 class Airgrow {
+    public static $key;
+    public static $tracker;
+    public static $product;
+    public static $authorized;
+
     function __construct(){
     }
 
-    function setApiKey($key){
-        $this->key = $key;
+    public static function setApiKey($key, $product){
+        self::$key = $key;
+	self::$product = $product;
 	
-        $authorization = $this->post([
-            "key" => $this->key,
+        $authorization = self::post([
+            "key" => self::$key,
+	    "product" => self::$product,
             "action" => "login" 
         ], "https://tracker.airgrow.com/collect.php");
 
-        $this->authorized = ($authorization["status"] == "success");
+	print_r($authorization);
 
-        if ($this->authorized){
-        	$this->tracker = $authorization["tracker"];
-		$this->product = $authorization["product"];
+        self::$authorized = ($authorization["status"] == "success");
+
+        if (self::$authorized){
+        	self::$tracker = $authorization["tracker"];
 	}
- 
     }
 
-    function event($name, $parameters = []){
+    public static function event($name, $parameters = []){
         $data = [
-            "product" => $this->product,
-            "key" => $this->key,
+            "product" => self::$product,
+            "key" => self::$key,
             "action" => "custom",
             "id" => "api:" . $name
         ];
@@ -34,17 +41,17 @@ class Airgrow {
         foreach ($parameters as $key => $value) 
             $data[$key] = $value;
         
-        return $this->post($data);
+        return self::post($data);
     }
 
-    function post($data, $url = NULL){
+    private static function post($data, $url = NULL){
         $curl = curl_init();
 
         if ($url == NULL){
-            if (!$this->authorized)
+            if (!self::$authorized)
                 return false;
 
-            $url = "https://" . $this->tracker . "/event";
+            $url = "https://" . self::$tracker . "/event";
         }
 
         curl_setopt($curl, CURLOPT_POST, 1);
