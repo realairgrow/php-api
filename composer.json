@@ -1,13 +1,37 @@
 {
-    "name": "airgrow/php-api",
-    "description": "Airgrow PHP Library",
+  "name": "airgrow/php-api",
+  "description": "Airgrow PHP Library",
+  "keywords": [
+    "airgrow",
+    "product analytics",
+    "api"
+  ],
+  "homepage": "https://airgrow.com/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Airgrow and contributors",
+      "homepage": "https://github.com/realairgrow/php-api/contributors"
+    }
+  ],
   "require": {
     "php": ">=5.4.0",
     "ext-curl": "*",
     "ext-json": "*",
     "ext-mbstring": "*"
   },
-   "autoload": {
-      "psr-4": { "Airgrow\\" : "lib/" }
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "php-coveralls/php-coveralls": "1.*",
+    "squizlabs/php_codesniffer": "~2.0",
+    "symfony/process": "~2.8"
+  },
+  "autoload": {
+    "psr-4": { "Airgrow\\" : "lib/" }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "2.0-dev"
     }
+  }
 }
