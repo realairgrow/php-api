@@ -1,9 +1,12 @@
 {
     "name": "airgrow/php-api",
     "description": "Airgrow PHP Library",
-    "require": {
-        "php": "^7.2"
-    },
+  "require": {
+    "php": ">=5.4.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "ext-mbstring": "*"
+  },
    "autoload": {
       "psr-4": { "Airgrow\\" : "lib/" }
     }
