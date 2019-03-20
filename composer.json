@@ -1,0 +1,7 @@
+{
+    "name": "airgrow/php-api",
+    "description": "Gives you an access to Airgrow API",
+    "require": {
+        "php": "^7.2"
+    }
+}
