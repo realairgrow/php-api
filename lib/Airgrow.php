@@ -3,20 +3,24 @@
 namespace Airgrow;
 
 class Airgrow {
-    function __construct($product, $key){
-        $this->product = $product;
-        $this->key = $key;
+    function __construct(){
+    }
 
+    function setApiKey($key){
+        $this->key = $key;
+	
         $authorization = $this->post([
-            "product" => $this->product,
             "key" => $this->key,
             "action" => "login" 
         ], "https://tracker.airgrow.com/collect.php");
 
         $this->authorized = ($authorization["status"] == "success");
 
-        if ($this->authorized)
-            $this->tracker = $authorization["tracker"];
+        if ($this->authorized){
+        	$this->tracker = $authorization["tracker"];
+		$this->product = $authorization["product"];
+	}
+ 
     }
 
     function event($name, $parameters = []){
