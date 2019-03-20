@@ -1,5 +1,7 @@
 <?php
 
+namespace Airgrow;
+
 class Airgrow {
     function __construct($product, $key){
         $this->product = $product;

@@ -1,7 +1,10 @@
 {
     "name": "airgrow/php-api",
-    "description": "Gives you an access to Airgrow API",
+    "description": "Airgrow PHP Library",
     "require": {
         "php": "^7.2"
+    },
+   "autoload": {
+      "psr-4": { "Airgrow\\" : "lib/" }
     }
 }
