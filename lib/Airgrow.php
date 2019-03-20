@@ -21,8 +21,6 @@ class Airgrow {
             "action" => "login" 
         ], "https://tracker.airgrow.com/collect.php");
 
-	print_r($authorization);
-
         self::$authorized = ($authorization["status"] == "success");
 
         if (self::$authorized){
